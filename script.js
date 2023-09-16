@@ -1,5 +1,6 @@
-let data = [
+const data = [
   { name: 'john', age: 24, profession: 'developer' },
+  
   { name: 'jane', age: 27, profession: 'admin' },
 
 ]
@@ -7,33 +8,31 @@ let data = [
 // 1. Print Developers
 function printDeveloper() {
   console.log('Printing developers')
-  let result=data.find((item)=>item.profession==='developer')
+  let result=data.filter((item)=>item.profession==='developer')
 console.log(result)
 }
 
 // 2. Add Data
 function addData() {
   let addData={}
-  let name=prompt('what is your name?')
-  let age=prompt('what is your age?')
-  let profession=prompt('what is you profession?')
-  addData.name=name;
-  addData.age=age;
-  addData.profession=profession;
+  addData.name=prompt('what is your name?')
+  addData.age=Number(prompt('what is your age?(numbers only)'))
+  addData.profession=prompt('what is you profession?')
+  
   data.push(addData)
   console.log(data)
 }
 
 // 3. Remove Admins
 function removeAdmin() {
-console.log('Remove admins')
+console.log('Remove admin')
  let result= data.filter((item)=>item.profession !== 'admin')
   console.log(result)
 }
 
 // 4. Concatenate Array
 function concatenateArray() {
-  console.log(`Concatinating the data array and dummy array`)
+  //dummy array
   let data2 = [
     { name: 'shivam singh', age: 24, profession: 'developer' },
     { name: 'akshay', age: 27, profession: 'UI designer' },
@@ -47,14 +46,22 @@ function averageAge() {
   let age=0
 data.forEach((item)=>age=age+item.age)
 let averageAge = age / data.length
-console.log(`Average age is ${averageAge}`)
+console.log(`Average age is ${averageAge.toFixed(2)}`)
 }
 
 // 6. Age Check
 function checkAgeAbove25() {
-  console.log('finding the person above age 25')
- let result= data.find((item)=>item.age>=25)
-  console.log(result)
+  
+ let result= data.filter((item)=>item.age>=25)
+  // validating the age 
+  if(result.length>=1){
+    console.log(result,"valid")
+  }else{
+    console.log("invalid")
+  }
+
+
+
 }
 
 // 7. Unique Professions
@@ -66,7 +73,7 @@ data.forEach((item) => {
   }
 })
 
-console.log(`unique professions are => ${unique.join(',')}`)
+console.log(unique)
 }
 
 // 8. Sort by Age
@@ -95,5 +102,5 @@ data.forEach((item)=>{
     unique.push(item.profession)
   }
 })
-console.log(`Total count of developers  and admin is ${unique.length}`)
+console.log(`total count of profession ${unique.length}`)
 }
